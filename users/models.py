@@ -23,7 +23,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     mobile = models.CharField(_('mobile'), max_length=225, null=True)
     created_at = models.DateTimeField(_('date created'), auto_now_add=True)
     updated_at = models.DateTimeField(_('dated updated'), auto_now=True)
-    is_active = models.BooleanField(_('active'), default=False)
+    is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('staff'), default=False)
     avatar = models.CharField(max_length=225, null=True, blank=True)
     last_seen = models.DateTimeField(_('last seen'), null=True)
