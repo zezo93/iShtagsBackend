@@ -13,9 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  url('blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import url
+from users.views import UserRetrieveAPIView
 
 # here we will add our api urls for ishtags apis
 urlpatterns = [
-
+    url(r'^users/(?P<user_id>[0-9]+)/$',
+        UserRetrieveAPIView.as_view()),
 ]

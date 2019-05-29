@@ -13,16 +13,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         ('FEMALE', 'FEMALE'),
         ('OTHER', 'OTHER')
     )
-    db_table = 'user'
-
     email = models.EmailField(_('email address'), max_length=225, unique=True, blank=False)
     username = models.CharField(_('username'), max_length=225, unique=True, blank=False)
-    gender = models.CharField(_('gender'), max_length=5, blank=False)
+    gender = models.CharField(_('gender'), max_length=5, null=True, blank=True)
     first_name = models.CharField(_('first name'), max_length=225, null=True)
     last_name = models.CharField(_('last name'), max_length=225, null=True)
     mobile = models.CharField(_('mobile'), max_length=225, null=True)
     created_at = models.DateTimeField(_('date created'), auto_now_add=True)
-    updated_at = models.DateTimeField(_('dated updated'), auto_now=True)
+    updated_at = models.DateTimeField(_('date updated'), auto_now=True)
     is_active = models.BooleanField(_('active'), default=True)
     is_staff = models.BooleanField(_('staff'), default=False)
     avatar = models.CharField(max_length=225, null=True, blank=True)
@@ -36,4 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         db_table = 'users'
         verbose_name = _('user')
         verbose_name_plural = _('users')
+
+    def __str__(self):
+        return self.email
 
